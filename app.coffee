@@ -1,5 +1,4 @@
-# Author : meinzug@me.com
-# Date : 2015.02.06 11:51
+# author : meinzug@me.com : 2015.02.06 11:51
 
 # load module
 hapi        = require 'hapi'
