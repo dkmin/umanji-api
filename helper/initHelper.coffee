@@ -1,30 +1,20 @@
 # author : meinzug@me.com : 2015.02.11 02:06
 
-
+# init node global
+exports.initNode = ->
+  global.app =
+    path : require ('app-root-path')
+    host : 'localhost'
+    port : 8080
 
 # init hapi config
 exports.initHapi = (demon) ->
   demon.connection
-    host: 'localhost'
-    port: 8080
-  console.log 'LOG: initHapi'
+    host: app.host
+    port: app.port
 
 # init hapi router
 exports.initHapiRouter = (demon) ->
-  demon.route
-    method: 'GET'
-    path: '/api/hello'
-    handler: (request, reply) -> reply 'HELLO'
-
-  demon.route
-    method: 'GET'
-    path: '/api/world'
-    handler: (request, reply) -> reply 'WORLD'
-
-# init express config
-exports.initExpress = (demon) ->
-  console.log 'init express config'
-
-# init express router
-exports.initExpressRouter = (demon) ->
-  console.log 'init express router'
+  console.log 'app.path: ' + app.path
+  console.log 'app.host: ' + app.host
+  console.log 'app.port: ' + app.port

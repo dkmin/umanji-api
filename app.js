@@ -8,6 +8,8 @@
 
   demon = new hapi.Server();
 
+  initHelper.initNode();
+
   initHelper.initHapi(demon);
 
   initHelper.initHapiRouter(demon);
