@@ -7,6 +7,6 @@
   },
   "dependencies": {
     "app-root-path": "^1.0.0",
-    "hapi": "^8.1.0"
+    "hapi": "^8.2.0"
   }
 }

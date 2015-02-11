@@ -2,23 +2,29 @@
 (function() {
   var demon, hapi, initHelper;
 
-  hapi = require('hapi');
+  hapi = require("hapi");
 
-  initHelper = require('./helper/initHelper.coffee');
+  initHelper = require("./helper/initHelper.coffee");
+
+  initHelper.initApp();
 
   demon = new hapi.Server();
 
-  initHelper.initNode();
-
   initHelper.initHapi(demon);
 
-  initHelper.initHapiRouter(demon);
+  initHelper.initHapiRouting(demon);
 
   demon.start();
 
-  console.log('server start..');
+  console.log("========================================");
+
+  console.log("umanji server started..");
+
+  console.log(new Date().toString());
 
   console.log(demon.info.uri);
+
+  console.log("========================================");
 
 }).call(this);
 
