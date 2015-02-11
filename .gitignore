@@ -46,4 +46,4 @@ crashlytics.properties
 crashlytics-build.properties
 
 # node.js
-node_modules
+node_modules/
