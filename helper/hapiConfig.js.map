@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "hapiConfig.js",
+  "sourceRoot": "",
+  "sources": [
+    "hapiConfig.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAEA;AAAA,EAAA,OAAO,CAAC,WAAR,GACI;AAAA,IAAA,WAAA,EACE;AAAA,MAAA,MAAA,EACE;AAAA,QAAA,IAAA,EAAM,IAAN;OADF;KADF;GADJ,CAAA;;AAAA,EAKA,OAAO,CAAC,GAAR,GACE;AAAA,IAAA,IAAA,EAAQ,YAAR;AAAA,IACA,IAAA,EAAQ,WADR;AAAA,IAEA,IAAA,EAAO,IAFP;GANF,CAAA;AAAA"
+}

@@ -2,22 +2,19 @@
 
 # load module
 hapi        = require "hapi"
-initHelper  = require "./helper/initHelper.coffee"
-
-# init app
-initHelper.initApp()
+hapiHelper  = require "./helper/hapiHelper.coffee"
 
 # init hapi
-demon = new hapi.Server()
-initHelper.initHapi demon
-initHelper.initHapiRouting demon
+app = new hapi.Server()
+hapiHelper.initOptions(app)
+hapiHelper.initRoutes(app, true)
 
 # run hapi
-demon.start()
+app.start()
 
 # start log
 console.log "========================================"
-console.log "umanji server started.."
+console.log "Server started.."
 console.log new Date().toString()
-console.log demon.info.uri
+console.log app.info.uri
 console.log "========================================"
