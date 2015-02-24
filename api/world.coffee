@@ -2,11 +2,25 @@
 
 # index
 exports.loadIndex = (app) ->
-  app.route
-    method: "GET"
-    path: "/world"
-    handler: (req, reply) -> world(req, reply)
+  indexList = [
+    {method: "POST",    path: "/world",       handler: postWorld}
+    {method: "GET",     path: "/world/{id}",  handler: getWorld}
+    {method: "PUT",     path: "/world/{id}",  handler: putWorld}
+    {method: "DELETE",  path: "/world/{id}",  handler: deleteWorld}
+  ]
+  app.route indexList
+
+
 
 # handler
-world = (req, reply) ->
-  reply "WORLD"
+postWorld = (req, reply) ->
+  reply {"result": "POST WORLD OK"}
+
+getWorld = (req, reply) ->
+  reply {"result": "GET WORLD OK"}
+
+putWorld = (req, reply) ->
+  reply {"result": "PUT WORLD OK"}
+
+deleteWorld = (req, reply) ->
+  reply {"result": "DELETE WORLD OK"}

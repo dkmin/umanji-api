@@ -2,13 +2,25 @@
 
 # index
 exports.loadIndex = (app) ->
-  app.route
-    method: "POST"
-    path: "/users"
-    handler: (req, reply) -> testJson(req, reply)
+  indexList = [
+    {method: "POST",    path: "/users",       handler: postUser}
+    {method: "GET",     path: "/users/{id}",  handler: getUser}
+    {method: "PUT",     path: "/users/{id}",  handler: putUser}
+    {method: "DELETE",  path: "/users/{id}",  handler: deleteUser}
+  ]
+  app.route indexList
+
+
 
 # handler
-testJson = (req, reply) ->
-  console.log email = req.payload.email
-  console.log password = req.payload.password
-  reply {"result" : "OK"}
+postUser = (req, reply) ->
+  reply {"result" : "POST USER"}
+
+getUser = (req, reply) ->
+  reply {"result" : "GET USER"}
+
+putUser = (req, reply) ->
+  reply {"result" : "PUT USER"}
+
+deleteUser = (req, reply) ->
+  reply {"result" : "DELETE USER"}

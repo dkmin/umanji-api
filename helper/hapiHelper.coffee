@@ -3,7 +3,7 @@
 # init hapi config
 exports.initOptions = (app) ->
   app.connection
-    host   : "localhost"
+    host   : "0.0.0.0"
     port   : 8080
     routes : {cors : true}
 
@@ -22,8 +22,9 @@ exports.initRoutes = (app, isAutoLoad) ->
   if(isAutoLoad)
     for file in apiFiles then do (file) ->
       if path.extname(file) == ".coffee"
-        filePath = appEnv.apiPath + "/" + file
+        filePath = global.appEnv.apiPath + "/" + file
         (require filePath).loadIndex app
+        console.log filePath
   # manual routing
   else
     require(appEnv.apiPath + "/hello.coffee").loadIndex app

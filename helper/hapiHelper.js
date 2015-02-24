@@ -2,7 +2,7 @@
 (function() {
   exports.initOptions = function(app) {
     app.connection({
-      host: "localhost",
+      host: "0.0.0.0",
       port: 8080,
       routes: {
         cors: true
@@ -26,8 +26,9 @@
         _results.push((function(file) {
           var filePath;
           if (path.extname(file) === ".coffee") {
-            filePath = appEnv.apiPath + "/" + file;
-            return (require(filePath)).loadIndex(app);
+            filePath = global.appEnv.apiPath + "/" + file;
+            (require(filePath)).loadIndex(app);
+            return console.log(filePath);
           }
         })(file));
       }

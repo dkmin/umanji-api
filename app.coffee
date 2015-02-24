@@ -1,13 +1,13 @@
 # author : meinzug@me.com : 2015.02.06 11:51
 
 # load module
-hapi        = require "hapi"
-hapiHelper  = require "./helper/hapiHelper.coffee"
+Hapi        = require "hapi"
+HapiHelper  = require "./helper/hapiHelper.coffee"
 
 # init hapi
-app = new hapi.Server()
-hapiHelper.initOptions(app)
-hapiHelper.initRoutes(app, true)
+app = new Hapi.Server()
+HapiHelper.initOptions(app)
+HapiHelper.initRoutes(app, true)
 
 # run hapi
 app.start()
