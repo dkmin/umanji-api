@@ -3,24 +3,28 @@
 # index
 exports.loadIndex = (app) ->
   indexList = [
-    {method: "POST",    path: "/users",       handler: postUser}
-    {method: "GET",     path: "/users/{id}",  handler: getUser}
-    {method: "PUT",     path: "/users/{id}",  handler: putUser}
-    {method: "DELETE",  path: "/users/{id}",  handler: deleteUser}
+    {method: "POST",    path: "/users",       handler: post}
+    {method: "GET",     path: "/users",       handler: getList}
+    {method: "GET",     path: "/users/{id}",  handler: get}
+    {method: "PUT",     path: "/users/{id}",  handler: put}
+    {method: "DELETE",  path: "/users/{id}",  handler: del}
   ]
   app.route indexList
 
 
 
 # handler
-postUser = (req, reply) ->
-  reply {"result" : "POST USER"}
+post = (req, reply) ->
+  reply {"result": "POST"}
 
-getUser = (req, reply) ->
-  reply {"result" : "GET USER"}
+getList = (req, reply) ->
+  reply {"result": "GET LIST"}
 
-putUser = (req, reply) ->
-  reply {"result" : "PUT USER"}
+get = (req, reply) ->
+  reply {"result": "GET"}
 
-deleteUser = (req, reply) ->
-  reply {"result" : "DELETE USER"}
+put = (req, reply) ->
+  reply {"result": "PUT"}
+
+del = (req, reply) ->
+  reply {"result": "DELETE"}
