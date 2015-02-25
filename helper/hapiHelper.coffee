@@ -24,7 +24,6 @@ exports.initRoutes = (app, isAutoLoad) ->
       if path.extname(file) == ".coffee"
         filePath = global.appEnv.apiPath + "/" + file
         (require filePath).loadIndex app
-        console.log filePath
   # manual routing
   else
     require(appEnv.apiPath + "/hello.coffee").loadIndex app

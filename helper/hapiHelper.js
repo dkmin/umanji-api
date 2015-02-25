@@ -27,8 +27,7 @@
           var filePath;
           if (path.extname(file) === ".coffee") {
             filePath = global.appEnv.apiPath + "/" + file;
-            (require(filePath)).loadIndex(app);
-            return console.log(filePath);
+            return (require(filePath)).loadIndex(app);
           }
         })(file));
       }

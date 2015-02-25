@@ -1,13 +1,18 @@
 # author : meinzug@me.com : 2015.02.06 11:51
 
 # load module
-Hapi        = require "hapi"
-HapiHelper  = require "./helper/hapiHelper.coffee"
+hapi        = require "hapi"
+hapiHelper  = require "./helper/hapiHelper.coffee"
+mysqlHelper = require "./helper/mysqlHelper.coffee"
+bluebird    = require "bluebird"
+
+# init mysql
+#mysqlHelper.initDbms()
 
 # init hapi
-app = new Hapi.Server()
-HapiHelper.initOptions(app)
-HapiHelper.initRoutes(app, true)
+app = new hapi.Server()
+hapiHelper.initOptions(app)
+hapiHelper.initRoutes(app, true)
 
 # run hapi
 app.start()
