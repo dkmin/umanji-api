@@ -1,5 +1,6 @@
 # author : meinzug@me.com : 2015.02.24 15:41
 
+# load module
 mysql = require "mysql"
 
 exports.initDbms = () ->
@@ -11,13 +12,19 @@ exports.initDbms = () ->
     database:           "master1"
     connectionLimit:    20
     waitForConnections: false
+  global.mysqlPool = mysql.createPool(config)
 
-  pool = mysql.createPool(config)
+exports.getRecords = (table) ->
+  sql = "select * from #{table}"
 
-  pool.getConnection((error, conn) ->
-    qry = "select * from tbl_user"
-    conn.query(qry, (err, res) ->
-      if err then console.log "QRY ERROR: " + qry
-      console.log res
+  mysqlPool.getConnection((err, conn) ->
+    conn.query(sql, (err, rows) ->
+      if err
+        conn.release()
+        console.log(err)
+        throw err
+
+      console.log(rows)
+      conn.release()
     )
   )

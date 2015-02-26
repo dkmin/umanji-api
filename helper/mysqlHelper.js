@@ -5,7 +5,7 @@
   mysql = require("mysql");
 
   exports.initDbms = function() {
-    var config, pool;
+    var config;
     config = {
       host: "localhost",
       port: 3306,
@@ -15,15 +15,21 @@
       connectionLimit: 20,
       waitForConnections: false
     };
-    pool = mysql.createPool(config);
-    return pool.getConnection(function(error, conn) {
-      var qry;
-      qry = "select * from tbl_user";
-      return conn.query(qry, function(err, res) {
+    return global.mysqlPool = mysql.createPool(config);
+  };
+
+  exports.getRecords = function(table) {
+    var sql;
+    sql = "select * from " + table;
+    return mysqlPool.getConnection(function(err, conn) {
+      return conn.query(sql, function(err, rows) {
         if (err) {
-          console.log("QRY ERROR: " + qry);
+          conn.release();
+          console.log(err);
+          throw err;
         }
-        return console.log(res);
+        console.log(rows);
+        return conn.release();
       });
     });
   };

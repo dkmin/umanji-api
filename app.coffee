@@ -4,10 +4,12 @@
 hapi        = require "hapi"
 hapiHelper  = require "./helper/hapiHelper.coffee"
 mysqlHelper = require "./helper/mysqlHelper.coffee"
+constHelper = require "./helper/constHelper.coffee"
 bluebird    = require "bluebird"
 
-# init mysql
-#mysqlHelper.initDbms()
+# init helper
+constHelper.initConst()
+mysqlHelper.initDbms()
 
 # init hapi
 app = new hapi.Server()

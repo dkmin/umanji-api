@@ -1,5 +1,8 @@
 # author : meinzug@me.com : 2015.02.12 12:22
 
+#load module
+db    = require "../helper/mysqlHelper.coffee"
+
 # index
 exports.loadIndex = (app) ->
   indexList = [
@@ -18,6 +21,7 @@ post = (req, reply) ->
   reply {"result": "POST"}
 
 getList = (req, reply) ->
+  db.getRecords global.TBL_USER
   reply {"result": "GET LIST"}
 
 get = (req, reply) ->
