@@ -1,15 +1,13 @@
 # author : meinzug@me.com : 2015.02.06 11:51
 
 # load module
-hapi        = require "hapi"
-hapiHelper  = require "./helper/hapiHelper.coffee"
-mysqlHelper = require "./helper/mysqlHelper.coffee"
-constHelper = require "./helper/constHelper.coffee"
-bluebird    = require "bluebird"
+global.CONST  = require "./helper/constant.coffee"
+global.db     = require "./helper/mysqlHelper.coffee"
+hapi          = require "hapi"
+hapiHelper    = require "./helper/hapiHelper.coffee"
 
 # init helper
-constHelper.initConst()
-mysqlHelper.initDbms()
+db.initDbms()
 
 # init hapi
 app = new hapi.Server()

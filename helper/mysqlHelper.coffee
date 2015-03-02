@@ -1,22 +1,42 @@
 # author : meinzug@me.com : 2015.02.24 15:41
 
 # load module
-mysql = require "mysql"
+bluebird  = require "bluebird"
+mysql     = require "mysql"
+mysqlPool = null
 
+# common operations
 exports.initDbms = () ->
   config =
-    host:               "localhost"
-    port:               3306
-    user:               "umanji"
-    password:           "18281828"
-    database:           "master1"
-    connectionLimit:    20
-    waitForConnections: false
-  global.mysqlPool = mysql.createPool(config)
+    host:               CONST.MYSQL_HOST
+    port:               CONST.MYSQL_PORT
+    user:               CONST.MYSQL_USER
+    password:           CONST.MYSQL_PASSWORD
+    database:           CONST.MYSQL_DATABASE
+    connectionLimit:    CONST.MYSQL_CONNECTION_LIMIT
+    waitForConnections: CONST.MYSQL_WAIT_FOR_CONNECTIONS
+  mysqlPool = mysql.createPool(config)
+
+#query = (sql, rows) ->
+#  mysqlPool.getConnection((err, conn) ->
+#    return conn.query(sql, (err, rows) ->
+#      if err then conn.release(); console.log(err); throw err
+#
+#      conn.release()
+#      console.log rows
+#      return rows
+#    )
+#  )
+#
+#exports.getRecords = (table) ->
+#  query("select * from #{table}", rows) ->
+#    if(rows)
+#      console.log rows
 
 exports.getRecords = (table) ->
-  sql = "select * from #{table}"
+  promise = bluebird.defer()
 
+  sql = "select * from #{table}"
   mysqlPool.getConnection((err, conn) ->
     conn.query(sql, (err, rows) ->
       if err
@@ -24,7 +44,9 @@ exports.getRecords = (table) ->
         console.log(err)
         throw err
 
-      console.log(rows)
       conn.release()
+      console.log rows
     )
   )
+
+  promise.promise

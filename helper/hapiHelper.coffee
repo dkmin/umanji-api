@@ -12,7 +12,7 @@ exports.initOptions = (app) ->
     apiPath : require("app-root-path") + "/api"
 
 
-# init hpai routing index
+# init hapi routing index
 exports.initRoutes = (app, isAutoLoad) ->
   fs        = require "fs"
   path      = require "path"
