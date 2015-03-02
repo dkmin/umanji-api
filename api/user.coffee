@@ -13,19 +13,41 @@ exports.loadIndex = (app) ->
 
 
 
-# handler
+# POST /users
 post = (req, reply) ->
   reply {"result": "POST"}
 
-getList = (req, reply) ->
-  db.getRecords CONST.TBL_USER
-  reply {"result": "GET LIST"}
 
+
+# GET /users
+getList = (req, reply) ->
+  db.getRecords(CONST.TBL_USER)
+
+  .then (rows) ->
+    console.log "FULFILLED : " + JSON.stringify(rows)
+    reply {"result": rows}
+
+  .catch (error) ->
+    console.log "REJECTED : " + error
+    reply {"result": "error code here"}
+
+  .finally ->
+    console.log "FINAL : " + "blabla"
+
+
+
+# GET /users/{id}
 get = (req, reply) ->
   reply {"result": "GET"}
 
+
+
+# PUT /users/{id}
 put = (req, reply) ->
   reply {"result": "PUT"}
 
+
+
+# DELETE /users/{id}
 del = (req, reply) ->
   reply {"result": "DELETE"}

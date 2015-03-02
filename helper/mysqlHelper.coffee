@@ -1,7 +1,7 @@
 # author : meinzug@me.com : 2015.02.24 15:41
 
 # load module
-bluebird  = require "bluebird"
+promise   = require "bluebird"
 mysql     = require "mysql"
 mysqlPool = null
 
@@ -17,36 +17,18 @@ exports.initDbms = () ->
     waitForConnections: CONST.MYSQL_WAIT_FOR_CONNECTIONS
   mysqlPool = mysql.createPool(config)
 
-#query = (sql, rows) ->
-#  mysqlPool.getConnection((err, conn) ->
-#    return conn.query(sql, (err, rows) ->
-#      if err then conn.release(); console.log(err); throw err
-#
-#      conn.release()
-#      console.log rows
-#      return rows
-#    )
-#  )
-#
-#exports.getRecords = (table) ->
-#  query("select * from #{table}", rows) ->
-#    if(rows)
-#      console.log rows
-
 exports.getRecords = (table) ->
-  promise = bluebird.defer()
+  new promise((resolve, reject) ->
+    sql = "select * from #{table}"
 
-  sql = "select * from #{table}"
-  mysqlPool.getConnection((err, conn) ->
-    conn.query(sql, (err, rows) ->
-      if err
+    mysqlPool.getConnection((err, conn) ->
+      conn.query(sql, (err, rows) ->
+        if err
+          conn.release()
+          reject(throw err)
+
         conn.release()
-        console.log(err)
-        throw err
-
-      conn.release()
-      console.log rows
+        resolve(rows)
+      )
     )
   )
-
-  promise.promise
