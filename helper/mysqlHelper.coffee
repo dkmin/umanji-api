@@ -8,12 +8,12 @@ mysqlPool = null
 # common operations
 exports.initDbms = () ->
   config =
-    host:               CONST.MYSQL_HOST
-    port:               CONST.MYSQL_PORT
-    user:               CONST.MYSQL_USER
-    password:           CONST.MYSQL_PASSWORD
-    database:           CONST.MYSQL_DATABASE
-    connectionLimit:    CONST.MYSQL_CONNECTION_LIMIT
+    host              : CONST.MYSQL_HOST
+    port              : CONST.MYSQL_PORT
+    user              : CONST.MYSQL_USER
+    password          : CONST.MYSQL_PASSWORD
+    database          : CONST.MYSQL_DATABASE
+    connectionLimit   : CONST.MYSQL_CONNECTION_LIMIT
     waitForConnections: CONST.MYSQL_WAIT_FOR_CONNECTIONS
   mysqlPool = mysql.createPool(config)
 

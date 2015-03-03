@@ -10,6 +10,7 @@
     "bluebird": "^2.9.12",
     "dateformat": "^1.0.11",
     "hapi": "^8.2.0",
+    "hapi-auth-jwt": "^2.1.0",
     "joi": "^6.0.0",
     "mysql": "^2.5.5",
     "node-uuid": "^1.4.2"

@@ -3,13 +3,15 @@
 # index
 exports.loadIndex = (app) ->
   indexList = [
-    {method:"POST",   path:"/users",      handler:post}
-    {method:"GET",    path:"/users",      handler:getList}
-    {method:"GET",    path:"/users/{id}", handler:get,    config: hapiValidation.uuid}
-    {method:"PUT",    path:"/users/{id}", handler:put}
-    {method:"DELETE", path:"/users/{id}", handler:del}
+    { method: "POST",   path: "/users",      handler: post    }
+    { method: "GET",    path: "/users",      handler: getList }
+    { method: "GET",    path: "/users/{id}", handler: get,    config: hapiValidation.uuid}
+    { method: "PUT",    path: "/users/{id}", handler: put     }
+    { method: "DELETE", path: "/users/{id}", handler: del     }
   ]
   app.route indexList
+
+# test auth
 
 # POST /users
 post = (req, reply) ->

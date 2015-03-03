@@ -1,34 +1,40 @@
 # author : meinzug@me.com : 2015.02.11 02:06
 
-# init hapi config
-exports.initOptions = (app) ->
+# init config
+exports.initOption = (app) ->
   app.connection
-    host   : CONST.SERVER_HOST
-    port   : CONST.SERVER_PORT
-    routes : {cors : true}
+    host  : CONST.SERVER_HOST
+    port  : CONST.SERVER_PORT
+    routes: {cors : true}
 
-  global.appEnv =
-    path    : require "app-root-path"
-    apiPath : require("app-root-path") + "/api"
+# init plugin
+exports.initPlugin = (app) ->
+  plugins = [
+    { register: require("hapi-auth-jwt"), option: {""} }
+   #{ register: pluginA, option: {"blabla"} }
+   #{ register: pluginB, option: {"blabla"} }
+   #{ register: pluginC, option: {"blabla"} }
+  ]
+  app.register plugins, (error) ->
+    app.auth.strategy( "token", "jwt", key: CONST.SERVER_SECRET )
+#   app.auth.strategy( "token", "jwt", {key: CONST.SERVER_SECRET, validationFunc: validateFx} )
 
+validateFx = (decodedToken, callback) ->
+  console.log error
+  callback(error, false, credentials)
 
-# init hapi routing index
-exports.initRoutes = (app, isAutoLoad) ->
+# init route
+exports.initRoute = (app, isAutomaticRouting) ->
   fs        = require "fs"
   path      = require "path"
-  apiFiles  = fs.readdirSync appEnv.apiPath
+  apiFiles  = fs.readdirSync CONST.API_PATH
 
-  # automatic routing
-  if(isAutoLoad)
+  if(isAutomaticRouting)
     for file in apiFiles then do (file) ->
       if path.extname(file) == ".coffee"
-        filePath = global.appEnv.apiPath + "/" + file
+        filePath = CONST.API_PATH + "/" + file
         (require filePath).loadIndex app
-  # manual routing
   else
-    require(appEnv.apiPath + "/helloWorld.coffee").loadIndex app
-    require(appEnv.apiPath + "/world.coffee").loadIndex app
-    require(appEnv.apiPath + "/user.coffee").loadIndex app
-    require(appEnv.apiPath + "/building.coffee").loadIndex app
-    require(appEnv.apiPath + "/site.coffee").loadIndex app
-
+    require(CONST.API_PATH + "/helloWorld.coffee").loadIndex app
+    require(CONST.API_PATH + "/user.coffee"      ).loadIndex app
+    require(CONST.API_PATH + "/building.coffee"  ).loadIndex app

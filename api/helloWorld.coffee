@@ -3,11 +3,11 @@
 # index
 exports.loadIndex = (app) ->
   indexList = [
-    {method:"POST",   path:"/helloWorld",       handler:post}
-    {method:"GET",    path:"/helloWorld",       handler:getList}
-    {method:"GET",    path:"/helloWorld/{id}",  handler:get}
-    {method:"PUT",    path:"/helloWorld/{id}",  handler:put}
-    {method:"DELETE", path:"/helloWorld/{id}",  handler:del}
+    { method: "POST",   path: "/helloWorld",       handler: post    }
+    { method: "GET",    path: "/helloWorld",       handler: getList }
+    { method: "GET",    path: "/helloWorld/{id}",  handler: get     }
+    { method: "PUT",    path: "/helloWorld/{id}",  handler: put     }
+    { method: "DELETE", path: "/helloWorld/{id}",  handler: del     }
   ]
   app.route indexList
 

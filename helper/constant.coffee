@@ -19,3 +19,7 @@ exports.SERVER_PORT       = 8080
 exports.SERVER_UUID       = uuid.v4()
 exports.SERVER_BOOTUP_UTC = datefn(new Date(), "yyyy-mm-dd HH:MM:ss Z", true)
 exports.SERVER_BOOTUP_LOC = datefn(new Date(), "yyyy-mm-dd HH:MM:ss Z", false)
+exports.SERVER_SECRET     = uuid.v4()
+
+# path
+exports.API_PATH = require("app-root-path") + "/api"
