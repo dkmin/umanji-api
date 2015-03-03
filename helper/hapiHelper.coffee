@@ -3,8 +3,8 @@
 # init hapi config
 exports.initOptions = (app) ->
   app.connection
-    host   : "0.0.0.0"
-    port   : 8080
+    host   : CONST.SERVER_HOST
+    port   : CONST.SERVER_PORT
     routes : {cors : true}
 
   global.appEnv =
@@ -28,5 +28,7 @@ exports.initRoutes = (app, isAutoLoad) ->
   else
     require(appEnv.apiPath + "/hello.coffee").loadIndex app
     require(appEnv.apiPath + "/world.coffee").loadIndex app
-    require(appEnv.apiPath + "/user.coffee").loadIndex  app
+    require(appEnv.apiPath + "/user.coffee").loadIndex app
+    require(appEnv.apiPath + "/building.coffee").loadIndex app
+    require(appEnv.apiPath + "/site.coffee").loadIndex app
 

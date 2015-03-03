@@ -12,3 +12,10 @@ exports.MYSQL_PASSWORD              = "18281828"
 exports.MYSQL_DATABASE              = "master1"
 exports.MYSQL_CONNECTION_LIMIT      = 20
 exports.MYSQL_WAIT_FOR_CONNECTIONS  = false
+
+# server
+exports.SERVER_HOST       = "0.0.0.0"
+exports.SERVER_PORT       = 8080
+exports.SERVER_UUID       = uuid.v4()
+exports.SERVER_BOOTUP_UTC = datefn(new Date(), "yyyy-mm-dd HH:MM:ss Z", true)
+exports.SERVER_BOOTUP_LOC = datefn(new Date(), "yyyy-mm-dd HH:MM:ss Z", false)
