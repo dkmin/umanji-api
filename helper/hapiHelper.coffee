@@ -26,7 +26,7 @@ exports.initRoutes = (app, isAutoLoad) ->
         (require filePath).loadIndex app
   # manual routing
   else
-    require(appEnv.apiPath + "/hello.coffee").loadIndex app
+    require(appEnv.apiPath + "/helloWorld.coffee").loadIndex app
     require(appEnv.apiPath + "/world.coffee").loadIndex app
     require(appEnv.apiPath + "/user.coffee").loadIndex app
     require(appEnv.apiPath + "/building.coffee").loadIndex app

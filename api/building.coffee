@@ -3,22 +3,19 @@
 # index
 exports.loadIndex = (app) ->
   indexList = [
-    { method: "POST",   path: "/buildings",       handler: post }
-    { method: "GET",    path: "/buildings",       handler: getList }
-    { method: "GET",    path: "/buildings/{id}",  handler: get }
-    { method: "PUT",    path: "/buildings/{id}",  handler: put }
-    { method: "DELETE", path: "/buildings/{id}",  handler: del }
+    {method:"POST",   path:"/buildings",      handler:post}
+    {method:"GET",    path:"/buildings",      handler:getList}
+    {method:"GET",    path:"/buildings/{id}", handler:get}
+    {method:"PUT",    path:"/buildings/{id}", handler:put}
+    {method:"DELETE", path:"/buildings/{id}", handler:del}
   ]
   app.route indexList
-
-
 
 # handler
 post = (req, reply) ->
   reply {"result": "POST"}
 
 getList = (req, reply) ->
-  db.getRecords CONST.TBL_BUILDING
   reply {"result": "GET LIST"}
 
 get = (req, reply) ->
