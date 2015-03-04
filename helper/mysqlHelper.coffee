@@ -1,11 +1,11 @@
-# author : meinzug@me.com : 2015.02.24 15:41
+#### author : meinzug@me.com : 2015.02.24 15:41
 
-# load module
+#### load module
 promise   = require "bluebird"
 mysql     = require "mysql"
 mysqlPool = null
 
-# common operations
+#### common operations
 exports.initDbms = () ->
   config =
     host              : CONST.MYSQL_HOST

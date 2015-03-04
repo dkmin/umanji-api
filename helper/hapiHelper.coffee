@@ -1,29 +1,28 @@
-# author : meinzug@me.com : 2015.02.11 02:06
+##### author : meinzug@me.com : 2015.02.11 02:06
 
-# init config
+##### load module
+joi = require "joi"
+
+#### init config
 exports.initOption = (app) ->
   app.connection
     host  : CONST.SERVER_HOST
     port  : CONST.SERVER_PORT
     routes: {cors : true}
 
-# init plugin
+##### init plugin
 exports.initPlugin = (app) ->
   plugins = [
-    { register: require("hapi-auth-jwt"), option: {""} }
-   #{ register: pluginA, option: {"blabla"} }
-   #{ register: pluginB, option: {"blabla"} }
-   #{ register: pluginC, option: {"blabla"} }
+    {register: require "hapi-auth-jwt"}
+   #{register: pluginA, option: {}}
+   #{register: pluginB, option: {}}
   ]
-  app.register plugins, (error) ->
-    app.auth.strategy( "token", "jwt", key: CONST.SERVER_SECRET )
-#   app.auth.strategy( "token", "jwt", {key: CONST.SERVER_SECRET, validationFunc: validateFx} )
+  app.register plugins, (err) ->
+    app.auth.strategy "jwt", "jwt", true, config =
+      key:          CONST.SERVER_SECRET_KEY
+      validateFunc: isExistUser
 
-validateFx = (decodedToken, callback) ->
-  console.log error
-  callback(error, false, credentials)
-
-# init route
+##### init route
 exports.initRoute = (app, isAutomaticRouting) ->
   fs        = require "fs"
   path      = require "path"
@@ -38,3 +37,17 @@ exports.initRoute = (app, isAutomaticRouting) ->
     require(CONST.API_PATH + "/helloWorld.coffee").loadIndex app
     require(CONST.API_PATH + "/user.coffee"      ).loadIndex app
     require(CONST.API_PATH + "/building.coffee"  ).loadIndex app
+
+#### hapi config validation example
+exports.validation =
+    user_id:
+      validate:
+        params:
+          id: joi.string().min(3).max(20)
+    auth:
+      auth: "token"
+
+#### auth function
+isExistUser = (decodedToken, callback) ->
+  console.log "VALIDATE AUTH CALLED: foo: " + decodedToken.foo
+  callback(null, true, {})
