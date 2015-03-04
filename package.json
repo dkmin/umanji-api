@@ -12,6 +12,7 @@
     "hapi": "^8.2.0",
     "hapi-auth-jwt": "^2.1.0",
     "joi": "^6.0.0",
+    "jsonwebtoken": "^3.2.2",
     "mysql": "^2.5.5",
     "node-uuid": "^1.4.2"
   }
