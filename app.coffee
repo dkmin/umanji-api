@@ -18,8 +18,6 @@ hapiHelper.initPlugin(app)
 hapiHelper.initRoute(app, true)
 
 #### run hapi
-
-###
 app.start()
 
 #### start log
