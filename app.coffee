@@ -13,7 +13,7 @@ db.initDbms()
 
 #### init hapi
 app = new hapi.Server()
-hapiHelper.initOption(app)
+hapiHelper.initConfig(app)
 hapiHelper.initPlugin(app)
 hapiHelper.initRoute(app, true)
 
