@@ -15,15 +15,15 @@ login = (req, reply) ->
   password = req.payload.password
 
   if req.session.get(email)?
-    reply {"result":"Session Found: " + email}
+    reply {"result":"Session Found: #{email}"}
     return
 
   if email isnt "meinzug@me.com" or password isnt "1234"
-    reply {"result": "Login Error: " + email}
+    reply {"result": "Login Error: #{email}"}
     return
 
   req.session.set(email, {key: password})
-  reply {"result": "Login Completed: " + email}
+  reply {"result": "Login Completed: #{email}"}
 
 #### GET /logout
 logout = (req, reply) ->
@@ -35,7 +35,7 @@ logout = (req, reply) ->
 
   if req.session.get(email)
     req.session.clear(email)
-    reply {"result": "Logout Completed: " + email}
+    reply {"result": "Logout Completed: #{email}"}
 
 #### GET /auth
 auth = (req, reply) ->
